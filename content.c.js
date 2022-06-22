@@ -91,4 +91,4 @@ function mainEvent()
 requestAnimationFrame(mainEvent);
 
 console.clear();
-console.log("[EXQHACK] The cheat has been loaded");
+console.log("[Mines] The cheat has been loaded");
