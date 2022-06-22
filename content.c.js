@@ -8,7 +8,8 @@ CheatMenu.init();
 function reset()
 {
     init = false;
-  
+    airBreak.state = false;
+
     document.getElementById("infoWindow").style.display = "";
     document.getElementById("gameStates").style.display = "none";
 
@@ -21,6 +22,7 @@ function reset()
         physicsComponent: null,
         healthComponent: null,
         camera: null,
+        strikerComponent: null
     };
 
     utilsObjects = 
@@ -45,6 +47,8 @@ function mainEvent()
 
             let localPlayer = GameObjects.getLocalPlayer();
                 
+            Striker.init(localPlayer);
+
             localPlayer.at(0).entity.unpossess = function () 
             {
                 this.isPossessed = !1;
@@ -65,8 +69,11 @@ function mainEvent()
                 localPlayer.at(37).needImmediateUpdate_0 = true;
             }
 
-            // process functions          
-            Clicker.process(localPlayer);    
+            // process functions
+            AirBreak.process(localPlayer);
+            Clicker.process(localPlayer); 
+            Striker.process(localPlayer);
+            RemoveMines.process(localPlayer);
             WallHack.process(localPlayer);
 
             CheatMenu.setStates();
@@ -84,4 +91,4 @@ function mainEvent()
 requestAnimationFrame(mainEvent);
 
 console.clear();
-console.log("[Mines] The cheat has been loaded");
+console.log("[MINES] The cheat has been loaded");
